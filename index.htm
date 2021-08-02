@@ -4,7 +4,7 @@
 <html lang="en" manifest="cache.manifest">
 <head>
 	<meta charset="utf-8" />
-	<title>Pacman in HTML 5 Canvas</title>
+	<title>Pacman HTML 5 Deutsch</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="pacman-canvas.css">
 	<link rel="manifest" href="manifest.json">
@@ -77,15 +77,15 @@
 
 <!-- Display this message if Javascript is disabled -->
 <noscript>
-<h2>Enable Javascript!</h2>
-<p>This HTML 5 app requires Javascript to run. Please check that Javascript is enabled in your browser.</p>
+<h2>Javascript aktivieren!</h2>
+<p>Diese HTML 5 App benötigt Javascript. Bitte prüfe, ob Javascript in deinem Browser aktiviert worden ist.</p>
 </noscript>
 
 <!-- Highscore -->
 <div class="content" id="highscore-content">
-	<div class="button" id="back">&lt; back</div>
+	<div class="button" id="back">&lt; Zurück</div>
 	<div>
-		<h1>Highscore</h1>
+		<h1>Ruhmeshalle</h1>
 		<p>
 			<ol id="highscore-list">
 				
@@ -96,54 +96,54 @@
 
 <!-- INSTRUCTIONS -->
 <div class="content" id="instructions-content">
-	<div class="button" id="back">&lt; back</div>
+	<div class="button" id="back">&lt; Zurück</div>
 	<div>
-		<h1>Instructions</h1>
+		<h1>Anleitung</h1>
 		<div class="nomobile">
-			<h2>Controls</h2>
-			<p>Use your arrow keys or [W,A,S,D] keys to navigate pacman.</p>
-			<p>To pause / resume the game press [SPACE] or [ESC] or just click into the game area.</p>
+			<h2>Steuerung</h2>
+			<p>Verwende die Pfeiltasten oder die Tasten [W,A,S,D], um Pacman zu steuern.</p>
+			<p>Um das Spiel zu pausieren / fortzusetzen, drücke die[LEERTASTE] oder [ESC] oder klicke einfach in den Spielbereich.</p>
 		</div>
 		<div class="mobile">
-			<h2>Controls</h2>
-			<p>Use swipe gestures to navigate pacman.</p>
-			<p>Alternatively use the Arrow Buttons underneath the game area to navigate pacman.</p>
-			<p>To pause / resume the game, touch the game area once.</p>
+			<h2>Steuerung</h2>
+			<p>Verwende Wischgesten, um Pacman zu steuern.</p>
+			<p>Alternativ kannst du auch die Pfeiltasten unterhalb des Spielfelds verwenden, um Pacman zu steuern.</p>
+			<p>Um das Spiel zu unterbrechen / fortzusetzen, berühre den Spielbereich einmal.</p>
 		</div>
 
 		<div>
-			<h2>Ghosts</h2>
-			<p>Ghosts are creatures that hunt pacman and will kill him if they catch him.</p>
-			<p>Every ghost has its own strategy to chase down pacman.</p>
-			<h3>Inky<img src="img/inky.svg" class="pull-right"></h3>
-			Inky will stay in the ghost house until pacman has eaten at least 30 pills.	His home is the bottom right corner.
+			<h2>Gespenster</h2>
+			<p>Gespenster sind Kreaturen, die Pacman jagen und ihn fangen werden, wenn sie ihn erwischen.</p>
+			<p>Jedes Gespenst hat seine eigene Strategie, um Pacman zu jagen.</p>
+			<h3>Tinty<img src="img/inky.svg" class="pull-right"></h3>
+			Tinty bleibt so lange im Gespensterhaus, bis Pacman mindestens 30 Pillen gegessen hat.	Sein Zuhause ist die untere rechte Ecke.
 			<h3>Blinky <img src="img/blinky.svg" class="pull-right"></h3>
-			Blinky is the most agressive of the 4 ghosts. He will start chasing pacman right away, and aim directly at him. His home is the upper right corner.
+			Blinky ist der aggressivste der 4 Gespenster. Er wird sofort anfangen, Pacman zu jagen und direkt auf ihn zusteuern. Sein Zuhause ist die obere rechte Ecke.
 			<h3>Pinky<img src="img/pinky.svg" class="pull-right"></h3>
-			Pinky will start chasing pacman right away, he will always aim 4 fields ahead and 4 fields left of pacman. His home is the upper left corner.
+			Pinky fängt sofort an, Pacman zu jagen, er versucht immer 4 Felder vor und 4 Felder links von Pacman zu sein. Sein Zuhause ist die obere linke Ecke.
 			<h3>Clyde<img src="img/clyde.svg" class="pull-right"></h3>
-			Inky will stay in the ghost house until pacman has eaten at least 2/3 of all pills. His home is the bottom left corner.
+			Clyde bleibt im Geisterhaus, bis Pacman mindestens 2/3 aller Pillen gegessen hat. Sein Zuhause ist die untere linke Ecke.
 		</div>
 
 		<div>
-			<h2>Ghost moods</h2>
-			The ghosts have two different moods that change the way they act during the game.
-			<h3>Scatter mood</h3>
-			<p>This is the default mood. When ghosts are in scatter mood, they will just go to their home corner and stay there.</p>
+			<h2>Gespenster-Stimmung</h2>
+			Die Gespenster haben zwei verschiedene Stimmungen, die ihr Verhalten während des Spiels verändern.			
+			<h3>Sie bleiben wo sie sind</h3>
+			<p>Dies ist die Standardstimmung. Wenn Geister in dieser Stimmung sind, gehen sie einfach in ihre Ecke und bleiben dort.</p>
 			<img src="img/instructions/instructions_scatter.PNG">
-			<h3>Chase mood</h3>
-			<p>After a certain time the ghosts change their mood and want to go chasing pacman. This is indicated through the walls turning red.</p>
+			<h3>Jagdstimmung</h3>
+			<p>Nach einer gewissen Zeit ändern die Geister ihre Laune und wollen Pacman jagen. Dies wird dadurch angezeigt, dass die Wände rot werden.</p>
 			<img src="img/instructions/instructions_chase.PNG">
 		</div>
 
 		<div>
-			<h2>Items</h2>
-			<h3>Pills</h3>
+			<h2>Gegenstände</h2>
+			<h3>Pillen</h3>
 			<p>The goal of every level is, to eat all the white pills without getting catched by the ghosts. One pill results in 10 points.</p>
 			<h3>Powerpills</h3>
-			<p>In every level there are 4 powerpills, which are a bit bigger than the regular ones. If Pacman eats those, he will get strong enough to eat the ghosts. You can see this indicated by the ghosts turning blue. One powerpill results in 50 points.</p>
+			<p>Das Ziel jedes Levels ist es, alle weißen Pillen zu essen, ohne von den Geistern erwischt zu werden. Pro Pille gibt es 10 Punkte.</p>
 			<img src="img/instructions/instructions_powerpill.PNG">
-			<p>Eating a ghost results in 100 points. The soul of the ghost will return to the ghost house before starting to chase Pacman again.</p>
+			<p>Wenn du ein Gespenst frisst, erhältst du 100 Punkte. Die Seele des Geistes kehrt in das Geisterhaus zurück, bevor er wieder Pacman jagen kann.</p>
 		</div>
 
 	</div>
@@ -151,12 +151,12 @@
 
 <!-- Info -->
 <div class="content" id="info-content">
-	<div class="button" id="back">&lt; back</div>
+	<div class="button" id="back">&lt; Zurück</div>
 	<div>
-		<h1>Info</h1>
-		<p>Current Version: <span class="app-version">1.0.5 (2021-03-22)</span></p>
+		<h1>Infos</h1>
+		<p>Aktuelle Version: <span class="app-version">1.0.5 (2021-03-22)</span></p>
 		<img src="img/platzh1rsch-logo.png">
-		<p>Pacman Canvas is Open Source, written by <a href="http://platzh1rsch.ch">platzh1rsch</a>. You can get the code on <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.</p>
+		<p>Pacman Canvas ist ein Open Source Game, erstellt von <a href="http://platzh1rsch.ch">platzh1rsch</a>. Du bekommst den Code auf <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.</p>
 	</div>
 </div>
 
@@ -181,9 +181,9 @@
 	<!-- main game content -->
 	<div class="game wrapper">
 	
-		<div class="score">Score:</div>
-		<div class="level">Lvl:</div>
-		<div class="lives">Lives: </div>
+		<div class="score">Punkte:</div>
+		<div class="level">Level:</div>
+		<div class="lives">Leben: </div>
 		
 		<div class="controlSound">
 			<img src="img/audio-icon-mute.png" id="mute">
@@ -192,12 +192,12 @@
 		<div id="canvas-container">
 			<div id="canvas-overlay-container">
 				<div id="canvas-overlay-content">
-					<div id="title">Pacman Canvas</div>
-					<div><p id="text">Click to Play</p></div>
+					<div id="title">Pacman Canvas Deutsch</div>
+					<div><p id="text">Starte das Spiel hier</p></div>
 				</div>
 			</div>
 			<canvas id="myCanvas" width="540" height="390">
-			<p>Canvas not supported</p>
+			<p>Canvas wird nicht unterstützt</p>
 			</canvas>
 		</div>
 
@@ -222,10 +222,10 @@
 		<!-- Game Menu -->		
 		<div class="controls" id="menu-buttons">
 			<ul>
-				<li class="button" id="newGame">New Game</li>
-				<li class="button" id="highscore">Highscore</li>
-				<li class="button" id="instructions">Instructions</li>
-				<li class="button" id="info">Info</li>
+				<li class="button" id="newGame">Neues Spiel</li>
+				<li class="button" id="highscore">Ruhmeshalle</li>
+				<li class="button" id="instructions">Spielanleitung</li>
+				<li class="button" id="info">Infos</li>
 			</ul>
 			
 		</div>

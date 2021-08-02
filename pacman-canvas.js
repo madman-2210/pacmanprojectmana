@@ -85,7 +85,7 @@ function geronimo() {
 
 	function addHighscore() {
 		var name = $("input[type=text]").val();
-		$("#highscore-form").html("Saving highscore...");
+		$("#highscore-form").html("Highscore speichern...");
 		ajax_add(name, game.score.score, game.level);
 	}
 
@@ -207,7 +207,7 @@ function geronimo() {
 
 		/* Game Functions */
 		this.startGhostFrightened = function () {
-			console.log("ghost frigthened");
+			console.log("Gespenst erschreckt!");
 			this.ghostFrightened = true;
 			this.ghostFrightenedTimer = 240;
 			inky.dazzle();
@@ -286,9 +286,9 @@ function geronimo() {
 		};
 
 		this.newGame = function () {
-			var r = confirm("Are you sure you want to restart?");
+			var r = confirm("Nochmal von vorne?");
 			if (r) {
-				console.log("new Game");
+				console.log("Neues Spiel");
 				this.init(0);
 				this.forceResume();
 			}
@@ -303,7 +303,7 @@ function geronimo() {
 			} else {
 				this.level++;
 				console.log("Level " + game.level);
-				game.pauseAndShowMessage("Level " + game.level, this.getLevelTitle() + "<br/>(Click to continue!)");
+				game.pauseAndShowMessage("Level " + game.level, this.getLevelTitle() + "<br/>(Klicke und es geht weiter!)");
 				game.refreshLevel(".level");
 				this.init(1);
 			}
@@ -315,7 +315,7 @@ function geronimo() {
 			for (var i = 0; i < count; i++) {
 				html += " <img src='img/heart.png'>";
 			}
-			$(".lives").html("Lives: " + html);
+			$(".lives").html("Leben: " + html);
 
 		};
 
@@ -327,34 +327,34 @@ function geronimo() {
 		this.getLevelTitle = function () {
 			switch (this.level) {
 				case 2:
-					return '"The chase begins"';
+					return '"Die Jagd geht los"';
 					// activate chase / scatter switching
 				case 3:
-					return '"Inky\s awakening"';
+					return '"Inky wacht auf"';
 					// Inky starts leaving the ghost house
 				case 4:
-					return '"Clyde\s awakening"';
+					return '"Clyde wacht auf"';
 					// Clyde starts leaving the ghost house
 				case 5:
-					return '"need for speed"';
+					return '"Beeile dich jetzt"';
 					// All the ghosts get faster from now on
 				case 6:
-					return '"hunting season 1"';
+					return '"Jagdsaison Nr.1"';
 					// TODO: No scatter mood this time
 				case 7:
-					return '"the big calm"';
+					return '"Die große Ruhe"';
 					// TODO: Only scatter mood this time
 				case 8:
-					return '"hunting season 2"';
+					return '"Jagdsaison Nr.2"';
 					// TODO: No scatter mood and all ghosts leave instantly
 				case 9:
-					return '"ghosts on speed"';
+					return '"Gespenster mit Vollgas"';
 					// TODO: Ghosts get even faster for this level
 				case FINAL_LEVEL:
-					return '"The final chase"';
+					return '"Die letzte Jagd"';
 					// TODO: Ghosts get even faster for this level
 				default:
-					return '"nothing new"';
+					return '"Nichts neues"';
 			}
 		}
 
@@ -394,9 +394,9 @@ function geronimo() {
 			var inputHTML = scoreIsValid ? `<div id='highscore-form'>
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
-					<span class='button' id='score-submit'>save</span>
-				</div>` : `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
-			this.pauseAndShowMessage("Game over", "Total Score: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
+					<span class='button' id='score-submit'>Speichern</span>
+				</div>` : `<div id='invalid-score'>Deine Punktzahl sieht gefälscht aus, die Highscore-Liste ist nur für ehrliche Spieler ;)</div>`;
+			this.pauseAndShowMessage("Spiel vorbei", "Gesamtpunktzahl: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
 			$('#playerName').focus();
 		}
 
@@ -414,7 +414,7 @@ function geronimo() {
 
 		this.forcePause = function () {
 			this.timer.stop();
-			this.pauseAndShowMessage("Pause", "Click to Resume");
+			this.pauseAndShowMessage("Pause", "Klicken um fortzufahren");
 		}
 
 		this.forceResume = function () {
@@ -433,7 +433,7 @@ function geronimo() {
 			} else if (this.pause) {
 				this.forceResume();
 			} else {
-				this.pauseAndShowMessage("Pause", "Click to Resume");
+				this.pauseAndShowMessage("Pause", "Klicken um fortzufahren");
 			}
 		};
 
@@ -622,7 +622,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function (h) {
-			$(h).html("Score: " + this.score);
+			$(h).html("Punkte: " + this.score);
 		};
 
 	}
@@ -652,10 +652,10 @@ function geronimo() {
 	}
 
 	// Direction Objects
-	var up = new Direction("up", 1.75, 1.25, 0, -1); // UP
-	var left = new Direction("left", 1.25, 0.75, -1, 0); // LEFT
-	var down = new Direction("down", 0.75, 0.25, 0, 1); // DOWN
-	var right = new Direction("right", 0.25, 1.75, 1, 0); // RIGHT
+	var up = new Direction("hoch", 1.75, 1.25, 0, -1); // UP
+	var left = new Direction("links", 1.25, 0.75, -1, 0); // LEFT
+	var down = new Direction("runter", 0.75, 0.25, 0, 1); // DOWN
+	var right = new Direction("rechts", 0.25, 1.75, 1, 0); // RIGHT
 	/*var directions = [{},{},{},{}];
 	directions[0] = up;
 	directions[1] = down;
