@@ -622,7 +622,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function (h) {
-			$(h).html("Puntaje: " + this.score);
+			$(h).html("Puntos: " + this.score);
 		};
 
 	}

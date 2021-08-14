@@ -4,9 +4,9 @@
   font-style: normal;
   font-weight: 400;
   src: url('fonts/PressStart2P-Regular.ttf');
-  /* src: url('fonts/PressStart2Play.eot?iefix') format('eot'), */
-       /* url('fonts/PressStart2Play.woff') format('woff'), */
-       /* url('fonts/PressStart2P-Regular.ttf') format('truetype'); */
+  src: url('fonts/PressStart2Play.eot?iefix') format('eot'),
+    url('fonts/PressStart2Play.woff') format('woff'),
+    url('fonts/PressStart2P-Regular.ttf') format('truetype'); 
 }
 
 /* ---------------- */
@@ -110,7 +110,7 @@ input[type="text"]:hover, input[type="text"]:focus, input[type="password"]:hover
 .about { font-size: 10px; margin-top: 20px; text-align: center; display: none;}
 
 
-body, html { font-size: 15px; }
+body, html { font-size: 13.5px; }
 
 div.audio {}
 audio {display: block; }
