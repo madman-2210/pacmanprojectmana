@@ -74,8 +74,8 @@ function geronimo() {
 			},
 			dataType: 'json',
 			success: function (data) {
-				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+				console.log('Meilleur score ajouté : ' + data);
+				$('#highscore-form').html('<span class="button" id="show-highscore">Voir la liste des meilleurs scores</span>');
 			},
 			error: function (errorThrown) {
 				console.log(errorThrown);
@@ -85,7 +85,7 @@ function geronimo() {
 
 	function addHighscore() {
 		var name = $("input[type=text]").val();
-		$("#highscore-form").html("Saving highscore...");
+		$("#highscore-form").html("Enregistrement du score...");
 		ajax_add(name, game.score.score, game.level);
 	}
 
@@ -172,7 +172,7 @@ function geronimo() {
 		this.monsters;
 		this.level = 1;
 		this.refreshLevel = function (h) {
-			$(h).html("Lvl: " + this.level);
+			$(h).html("Niv : " + this.level);
 		};
 		this.canvas = $("#myCanvas").get(0);
 		this.wallColor = "Blue";
@@ -286,7 +286,7 @@ function geronimo() {
 		};
 
 		this.newGame = function () {
-			var r = confirm("Are you sure you want to restart?");
+			var r = confirm("Êtes-vous sûr de vouloir redémarrer ?");
 			if (r) {
 				console.log("new Game");
 				this.init(0);
@@ -302,8 +302,8 @@ function geronimo() {
 				game.showHighscoreForm();
 			} else {
 				this.level++;
-				console.log("Level " + game.level);
-				game.pauseAndShowMessage("Level " + game.level, this.getLevelTitle() + "<br/>(Click to continue!)");
+				console.log("Niveau " + game.level);
+				game.pauseAndShowMessage("Niveau " + game.level, this.getLevelTitle() + "<br/>(Cliquez pour continuer!)");
 				game.refreshLevel(".level");
 				this.init(1);
 			}
@@ -315,7 +315,7 @@ function geronimo() {
 			for (var i = 0; i < count; i++) {
 				html += " <img src='img/heart.png'>";
 			}
-			$(".lives").html("Lives: " + html);
+			$(".lives").html("Vies : " + html);
 
 		};
 
@@ -327,34 +327,34 @@ function geronimo() {
 		this.getLevelTitle = function () {
 			switch (this.level) {
 				case 2:
-					return '"The chase begins"';
+					return '"La poursuite commence"';
 					// activate chase / scatter switching
 				case 3:
-					return '"Inky\s awakening"';
+					return '"Inky\s se réveille"';
 					// Inky starts leaving the ghost house
 				case 4:
-					return '"Clyde\s awakening"';
+					return '"Clyde\s se réveille"';
 					// Clyde starts leaving the ghost house
 				case 5:
-					return '"need for speed"';
+					return '"besoin de vitesse"';
 					// All the ghosts get faster from now on
 				case 6:
-					return '"hunting season 1"';
+					return '"saison de chasse 1"';
 					// TODO: No scatter mood this time
 				case 7:
-					return '"the big calm"';
+					return '"le calme avant la tempête"';
 					// TODO: Only scatter mood this time
 				case 8:
-					return '"hunting season 2"';
+					return '"saison de chasse 2"';
 					// TODO: No scatter mood and all ghosts leave instantly
 				case 9:
-					return '"ghosts on speed"';
+					return '"fantômes boostés"';
 					// TODO: Ghosts get even faster for this level
 				case FINAL_LEVEL:
-					return '"The final chase"';
+					return '"la poursuite finale"';
 					// TODO: Ghosts get even faster for this level
 				default:
-					return '"nothing new"';
+					return '"rien de nouveau"';
 			}
 		}
 
@@ -394,9 +394,9 @@ function geronimo() {
 			var inputHTML = scoreIsValid ? `<div id='highscore-form'>
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
-					<span class='button' id='score-submit'>save</span>
-				</div>` : `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
-			this.pauseAndShowMessage("Game over", "Total Score: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
+					<span class='button' id='score-submit'>enregistrer</span>
+				</div>` : `<div id='invalid-score'>Votre score semble faux, la liste des meilleurs scores est réservée aux joueurs honnêtes. ;)</div>`;
+			this.pauseAndShowMessage("Fin de partie", "Score final : " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
 			$('#playerName').focus();
 		}
 
@@ -414,7 +414,7 @@ function geronimo() {
 
 		this.forcePause = function () {
 			this.timer.stop();
-			this.pauseAndShowMessage("Pause", "Click to Resume");
+			this.pauseAndShowMessage("Pause", "Cliquer pour reprendre");
 		}
 
 		this.forceResume = function () {
@@ -433,7 +433,7 @@ function geronimo() {
 			} else if (this.pause) {
 				this.forceResume();
 			} else {
-				this.pauseAndShowMessage("Pause", "Click to Resume");
+				this.pauseAndShowMessage("Pause", "Cliquer pour reprendre");
 			}
 		};
 
@@ -622,7 +622,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function (h) {
-			$(h).html("Score: " + this.score);
+			$(h).html("Score : " + this.score);
 		};
 
 	}
@@ -1302,7 +1302,7 @@ function geronimo() {
 				// Browser downloaded a new app cache.
 				// Swap it in and reload the page to get the new hotness.
 				window.applicationCache.swapCache();
-				if (confirm('A new version of this site is available. Load it?')) {
+				if (confirm('Une nouvelle version du site est disponible. Voulez vous le mettre à jour ?')) {
 					window.location.reload();
 				}
 
@@ -1600,7 +1600,7 @@ function geronimo() {
 		switch (evt.keyCode) {
 			case 38: // UP Arrow Key pressed
 				evt.preventDefault();
-			case 87: // W pressed
+			case 90: // W pressed (Z for azerty)
 				pacman.directionWatcher.set(up);
 				break;
 			case 40: // DOWN Arrow Key pressed
@@ -1610,7 +1610,7 @@ function geronimo() {
 				break;
 			case 37: // LEFT Arrow Key pressed
 				evt.preventDefault();
-			case 65: // A pressed
+			case 81: // A pressed (Q for azerty)
 				pacman.directionWatcher.set(left);
 				break;
 			case 39: // RIGHT Arrow Key pressed
