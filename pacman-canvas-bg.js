@@ -75,7 +75,7 @@ function geronimo() {
 			dataType: 'json',
 			success: function (data) {
 				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+				$('#highscore-form').html('<span class="button" id="show-highscore">Покажи високите резултати</span>');
 			},
 			error: function (errorThrown) {
 				console.log(errorThrown);
@@ -394,7 +394,7 @@ function geronimo() {
 			var inputHTML = scoreIsValid ? `<div id='highscore-form'>
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
-					<span class='button' id='score-submit'>save</span>
+					<span class='button' id='score-submit'>Запази</span>
 				</div>` : `<div id='invalid-score'>Изглежда, че мамиш. Високите резултати са само за честни играчи ;)</div>`;
 			this.pauseAndShowMessage("Край на играта", "Краен резултат: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
 			$('#playerName').focus();
@@ -1302,7 +1302,7 @@ function geronimo() {
 				// Browser downloaded a new app cache.
 				// Swap it in and reload the page to get the new hotness.
 				window.applicationCache.swapCache();
-				if (confirm('A new version of this site is available. Load it?')) {
+				if (confirm('Налична е нова версия на този сайт. Искате ли да я изтеглите?')) {
 					window.location.reload();
 				}
 
