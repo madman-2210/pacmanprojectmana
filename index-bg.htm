@@ -1,0 +1,138 @@
+<!DOCTYPE html> <!--<html lang="bg">--> <html lang="bg" manifest="cache.manifest">
+
+<head> 	<meta charset="utf-8" /> 	<title>Pacman Canvas BG</title> 	
+<link rel="stylesheet" href="style-en.css"> <link rel="stylesheet" href="pacman-canvas-bg.css"> <link rel="manifest" href="manifest.json"> 
+
+<!-- SEO Stuff --> 
+<meta name="description" content="Играй Pacman Canvas безплатно на твоя компютър или телефон. Тази игра е с отворен код и е създадена с HTML5." /> <link rel="canonical" href="http://pacman.platzh1rsch.ch/" /> 
+<meta name="author" content="platzh1rsch.ch" /> <meta name="publisher" content="platzh1rsch.ch" /> <meta name="copyright" content="&copy; Copyright (c) platzh1rsch.ch" /> <meta name="robots" content="index,follow" /> 
+<meta http-equiv="content-language" content="bg"> <meta name="language" content="bg"> <meta name="page-topic" content="Games/Arcade" /> <meta content="National" name="distribution" /> <meta content="pacman.platzh1rsch.ch" name="target" /> 
+
+<!-- Facebook Open Graph Information --> 
+<meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-200x200.png"/> <meta property="og:title" content="Pacman Canvas in HTML5" /> <meta property="og:description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." /> <meta property="og:url" content="http://pacman.platzh1rsch.ch/" /> <meta property="og:site_name" content="Pacman Canvas in HTML5" /> <meta property="og:locale" content="en_US" /> <!-- site icons --> <link rel="shortcut icon" href="img/Icon-130x130.png" /> <link rel="apple-touch-icon" href="img/Icon-130x130.png" /> <meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-130x130.png"/> <!-- AppsFuel verification code --> <meta name="appsfuel_code" content="83d3cedc1050a5c"/> 
+
+<!-- Mobile Viewport --> 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+
+<!-- Apple Mobile Web Capability --> 
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+
+<!-- Script --> 
+<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script> <script src="js/jquery.hammer.min.js" type="text/javascript"></script>
+
+<!-- Google Analytics --> 
+<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28993174-1']);
+	  _gaq.push(['_setDomainName', 'pacman.platzh1rsch.ch']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script> 	 </head>
+
+<body>
+
+<div class="container">
+<div class="main">   <!-- Display this message if Javascript is disabled --> <noscript> <h2>Активирай Javascript!</h2>
+<p> HTML5 приложението изисква активиране на Javascript. Моля провери дали Javascript е активиран в твоя браузър. </p> </noscript> <!-- Highscore --> <div class="content" id="highscore-content">
+	<div class="button" id="back">&lt; Назад</div>
+	<div>
+		<h1>Високи резултати</h1>
+		<p>
+			<ol id="highscore-list">
+				
+			</ol>
+		</p>
+	</div>
+</div>  <!-- INSTRUCTIONS --> <div class="content" id="instructions-content">
+	<div class="button" id="back">&lt; Назад</div>
+	<div>
+		<h1>Инструкции</h1>
+		<div class="nomobile">
+			<h2>Управление</h2>
+			<p>Използвай клавишите със стрелки или [W, A, S, D], за да движиш Пак Ман.</p>
+			<p>За пауза / продължение, натисни [SPACE] или [ESC] или просто кликни върху игралното поле. </p>
+		</div>
+		<div class="mobile">
+			<h2>Команди</h2>
+			<p>Използвай жестове с плъзгане, за да движиш Пак Ман.</p>
+			<p>Ако предпочиташ, може да използваш бутоните със стрелки, разположени под игралното поле, за да движиш Пак Ман. </p>
+			<p>За пауза / продължение, докосни веднъж игралното поле.</p>
+		</div>
+
+		<div>
+			<h2>Призраци</h2>
+			<p>Призраците са същества, които преследват Пак Ман и ще го убият, ако го хванат.</p>
+			<p>Всеки призрак има своя собствена стратегия за лов на Пак Ман. </p>
+			<h3>Инки<img src="img/inky.svg" class="pull-right"></h3> 			Инки няма да напусне призрачната къща докато Пак Ман не изяде поне 30 хапчета. Той обитава долния десен ъгъл. <h3>Блинки <img src="img/blinky.svg" class="pull-right"></h3> 			Блинки е най-агресивният от четирите призрака. Той веднага ще се насочи към Пак Ман и ще започне да го гони.  Той обитава горния десен ъгъл. <h3>Пинки<img src="img/pinky.svg" class="pull-right"></h3> 			Пинки веднага ще започне да гони Пак Mан, в посока 4 полета напред и 4 полета вляво от Пак Ман. Той обитава горния ляв ъгъл. <h3>Клайд<img src="img/clyde.svg" class="pull-right"></h3> 			Клайд няма да напусне призрачната къща докато Пак Ман не изяде поне 2/3 от всички хапчета. Той обитава долния ляв ъгъл. </div>
+
+		<div>
+			<h2>Настроения на призраците</h2> 			
+			<p>Призраците имат две различни настроения, които променят начина им на поведение по време на играта. </p>  
+			<h3>Спокойствие</h3>
+			<p>Това е нормалното им поведение. Когато призраците са спокойни, те ще се движат в близост до собствения си ъгъл и няма да го напускат.</p> 			<img src="img/instructions/instructions_scatter.PNG"> 			<h3>Гоненица</h3>
+			<p>След известно време призраците променят настроението си и започват да гонят Пак Ман. Гоненицата започва, когато стените почервенеят.</p> 			<img src="img/instructions/instructions_chase.PNG"> 		</div>
+
+		<div>
+			<h2>Предмети</h2>
+			<h3>Хапчета</h3>
+			<p>Целта на всяко ниво е Пак Ман да изяде всички бели хапчета, без да бъде уловен от призраците.  Всяко погълнато хапче носи 10 точки.</p>
+			<h3>Мегахапчета</h3>
+			<p>Всяко ниво има допълнителни 4 мегахапчета, които са малко по-големи от обикновените.  Ако Пак Ман погълне мегахапче, той временно ще придобие силата да яде призраци. Когато това се случи, призраците ще посинеят. Всяко погълнато мегахапче носи 50 точки.</p> 			<img src="img/instructions/instructions_powerpill.PNG"> 			<p>Всеки изяден призрак носи 100 точки. Душата на призрака ще се върне в къщата на призраците, преди да започне да гони Пак Ман отново. </p>
+		</div>
+
+	</div>
+</div>  <!-- Info --> <div class="content" id="info-content">
+	<div class="button" id="back">&lt; Назад</div>
+	<div>
+		<h1>Инфо</h1>
+		<p>Настояща Версия: <span class="app-version">1.0.5 (2021-03-22)</span></p> 		<img src="img/platzh1rsch-logo.png"> 		<p>Pacman Canvas е с отворен код, създаден от <a href="http://platzh1rsch.ch">platzh1rsch</a>. Можеш да изтеглиш кода от <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.<br> Превод на български от <a href="https://www.linkedin.com/in/veronika-dimitrinova-dimitrova/" target="_blank">Вероника Димитрова</a>.</p>
+	</div>
+</div>    <!-- main game content --> <div class="content" id="game-content">  		<!-- Google AdSense --> 		<div id="adsense"> 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle"
+ style="display:inline-block;width:320px;height:50px"
+ data-ad-client="ca-pub-0176206735745791"
+ data-ad-slot="6492298622"></ins> <script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script> 		</div> 	 	 	<!-- main game content --> 	<div class="game wrapper">
+	
+		<div class="score">Точки:</div>
+		<div class="level">Ниво:</div>
+		<div class="lives">Животи:</div>
+		
+		<div class="controlSound"> 			<img src="img/audio-icon-mute.png" id="mute"> 		</div> 		<!-- canvas is splitted into 18x13 fields --> 		<div id="canvas-container">
+			<div id="canvas-overlay-container">
+				<div id="canvas-overlay-content">
+					<div id="title">Pacman Canvas</div>
+					<div><p id="text">Щракни, за да играеш</p></div>
+				</div>
+			</div> 			<canvas id="myCanvas" width="540" height="390"> 			<p>Canvas не се поддържа</p> 			</canvas> 		</div>
+
+		<div class="controls" id="game-buttons"> 		<!-- Will be moved to Instructions 
+ <p class="nomobile">Use W-A-S-D keys to navigate Pac-Man</p>
+ --> <!-- OLD Buttons --> 			<div> 				<span id="up" class="controlButton">↑</span> 			</div>
+			<div> 				<span id="left" class="controlButton">←</span> <span id="down" class="controlButton">↓</span> <span id="right" class="controlButton">→</span> 			</div>
+			
+		</div> 		<!-- inGame Controls End --> <!-- Game Menu -->		 		<div class="controls" id="menu-buttons">
+			<ul>
+				<li class="button" id="newGame">Нова игра</li>
+				<li class="button" id="highscore">Високи резултати</li>
+				<li class="button" id="instructions">Инструкции</li>
+				<li class="button" id="info">Инфо</li>
+				<li class="button"><a href="index.html">Назад към началната страница</a></li>
+			</ul>
+			
+		</div> 		<!-- Game Menu End --> 		 	</div>
+		
+	<div class="description nomobile">
+		<p>Целият код е написан на HTML5, CSS3 и Javascript (малка част на jquery). За основната част, следвах уроците &quot; <a href="http://devhammer.net/blog/exploring-html5-canvas-part-1---introduction" target="_blank">Exploring HTML5 Canvas&quot; </a> (Част 1 - 6) от Devhammer. Благодаря за чудесните уроци!</a> <p>За други неща, като как да пиша обектно ориентиран javascript (objectorientated javascript), следвах уроците на адрес <a href="http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>, който е наистина страхотен сайт за изучаване на Javascript и други езици.</a> <p>Ако разбираш немски, може да прочетеш и публикацията ми в блога на този сайт: <a href="http://blog.platzh1rsch.ch/2012/08/pacman-in-html5-canvas.html">&quot;Pacman in HTML5 Canvas&quot;</a>. </p> 		 		<span id="audio"> <audio id="theme" preload="auto"> <source src="wav/theme.wav" type="audio/wav"> <source src="mp3/theme.mp3" type="audio/mpeg"> </audio> <audio id="waka" preload="auto"> <source src="wav/waka.wav" type="audio/wav"> <source src="mp3/waka.mp3" type="audio/mpeg"> </audio> <audio id="die" preload="auto"> <source src="wav/die.wav" type="audio/wav"> <source src="mp3/die.mp3" type="audio/mpeg"> </audio> <audio id="powerpill" preload="auto"> <source src="wav/powerpill.wav" type="audio/wav"> <source src="mp3/powerpill.mp3" type="audio/mpeg"> </audio> </span> 		 		 	</div>
+
+</div>
+</div>
+</div>  	<script src="pacman-canvas-bg.js" type="text/javascript"></script>   </body>
+</html>

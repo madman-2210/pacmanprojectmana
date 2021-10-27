@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<!--<html lang="vi">-->
+<html lang="vi" manifest="cache.manifest">
+<head>
+	<meta charset="utf-8" />
+	<title>Pacman in HTML 5 Canvas</title>
+	<link rel="stylesheet" href="style-en.css">
+	<link rel="stylesheet" href="style-vi.css">
+	<link rel="stylesheet" href="pacman-canvas-vi.css">
+	<link rel="manifest" href="manifest.json">
+
+
+	<!-- SEO Stuff -->
+    <meta name="description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <link rel="canonical" href="http://pacman.platzh1rsch.ch/" />
+    <meta name="author" content="platzh1rsch.ch" />
+    <meta name="publisher" content="platzh1rsch.ch" />
+    <meta name="copyright" content="&copy; Copyright (c) platzh1rsch.ch" />
+    <meta name="robots" content="index,follow" />
+    <meta http-equiv="content-language" content="vi">
+    <meta name="language" content="vi">
+    <meta name="page-topic" content="Games/Arcade" />
+
+    <meta content="National" name="distribution" />
+    <meta content="pacman.platzh1rsch.ch" name="target" />
+
+   	<!-- Facebook Open Graph Information -->
+	<meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-200x200.png"/>
+    <meta property="og:title" content="Pacman Canvas in HTML5" />
+	<meta property="og:description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <meta property="og:url" content="http://pacman.platzh1rsch.ch/" />
+    <meta property="og:site_name" content="Pacman Canvas in HTML5" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- site icons -->
+	<link rel="shortcut icon" href="img/Icon-130x130.png" />
+	<link rel="apple-touch-icon" href="img/Icon-130x130.png" />
+
+    <meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-130x130.png"/>
+
+	<!-- AppsFuel verification code -->
+	<meta name="appsfuel_code" content="83d3cedc1050a5c"/>
+	
+	<!-- Mobile Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	
+	<!-- Apple Mobile Web Capability -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<!-- Script -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.hammer.min.js" type="text/javascript"></script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28993174-1']);
+	  _gaq.push(['_setDomainName', 'pacman.platzh1rsch.ch']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+	
+</head>
+
+<body>
+
+<div class="container">
+<div class="main">
+
+
+<!-- Display this message if Javascript is disabled -->
+<noscript>
+<h2>Bật Javascript!</h2>
+<p>Ứng dụng HTML 5 này yêu cầu Javascripts để chạy. Vui lòng kiểm tra xem Javascript đã được bật ở trình duyệt của bạn chưa.</p>
+</noscript>
+
+<!-- Highscore -->
+<div class="content" id="highscore-content">
+	<div class="button" id="back">&lt; Quay lại</div>
+	<div>
+		<h1>Điểm Cao</h1>
+		<p>
+			<ol id="highscore-list">
+				
+			</ol>
+		</p>
+	</div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="content" id="instructions-content">
+	<div class="button" id="back">&lt; Quay lại</div>
+	<div>
+		<h1>Hướng dẫn</h1>
+		<div class="nomobile">
+			<h2>Bảng điều khiển</h2>
+			<p>Sử dụng các phím mũi tên hoặc phím [W,A,S,D] để điều hướng pacman.</p>
+			<p>Để tạm dừng/tiếp tục trò chơi nhấn [SPACE] hoặc [ESC] hoặc chỉ cần nhấp vào vùng trò chơi.</p>
+		</div>
+		<div class="mobile">
+			<h2>Bảng điều khiển</h2>
+			<p>Vuốt để điều khiển pacman.</p>
+			<p>Sử dụng thay thế các phím mũi tên bên dưới trò chơi để điều hướng pacman.</p>
+			<p>Để tạm dừng/tiếp tục trò chơi, nhấp vào vùng trò chơi.</p>
+		</div>
+
+		<div>   
+			<h2>Hồn ma</h2>
+			<p>Hồn ma là những sinh vật săn đuổi pacman và sẽ giết ngay khi chúng bắt được anh ấy.</p>
+			<p>Mỗi hồn ma có chiến lược riêng của chúng để truy bắt pacman.</p>
+			<h3>Inky<img src="img/inky.svg" class="pull-right"></h3>
+			Inky sẽ ở trong nhà ma tới khi pacman đã ăn ít nhất 30 viên thuốc.	Nhà của hắn ở góc phải bên dưới.
+			<h3>Blinky <img src="img/blinky.svg" class="pull-right"></h3>
+			Blinky là hồn ma hung dữ nhất trong số 4 hồn ma. Hắn sẽ truy đuổi pacman ngay lập tức, và nhắm thẳng trực tiếp vào anh ấy. Nhà của hắn ở góc phải bên trên.
+			<h3>Pinky<img src="img/pinky.svg" class="pull-right"></h3>
+			Pinky sẽ bắt đầu truy đuổi pacman ngay lập tực, hắn sẽ nhắm vào 4 vùng phía trên và 4 vùng bên trái của pacman. Nhà của hắn ở góc trái bên trên.
+			<h3>Clyde<img src="img/clyde.svg" class="pull-right"></h3>
+			Clyde sẽ ở trong nhà ma tới khi pacman đã ăn hết 2/3 tổng số thuốc. Nhà của hắn ở góc trái bên dưới.
+		</div>
+
+		<div>
+			<h2>Tâm trạng hồn ma</h2>
+			Các hồn ma có hai dạng tâm trạng cái mà thay đổi cách thức chúng hành động trong suốt trò chơi.
+			<h3>Tâm trạng phân tán</h3>
+			<p>Đây là tâm trạng mặc định. Khi hồn ma đang trong tâm trạng phân tán, chúng sẽ chỉ đi về góc nhà của chúng và ở đó.</p>
+			<img src="img/instructions/instructions_scatter.PNG">
+			<h3>Tâm trạng truy đuổi</h3>
+			<p>Sau một thời gian nhất định các hồn ma thay đổi tâm trạng của chúng và muốn truy đuổi pacman. Điều này được ám chỉ qua các bức tường chuyển màu đỏ.</p>
+			<img src="img/instructions/instructions_chase.PNG">
+		</div>
+
+		<div>
+			<h2>Vật phẩm</h2>
+			<h3>Viên thuốc</h3>
+			<p>Mục tiêu của mỗi vòng chơi là ăn hết các viên thuốc trắng mà không bị bắt bởi các hồn ma. Một viên thuốc sẽ mang lại 10 điểm.</p>
+			<h3>Viên thuốc năng lực</h3>
+			<p>Ở mỗi vòng chơi có 4 viên thuốc năng lực là những viên lớn hơn các viên bình thường một chút. Nếu pacman ăn phải những viên đó, anh ấy sẽ trở nên đủ mạnh để ăn các hồn ma. Bạn có thể thấy điều này được ám chỉ qua việc các hồn ma chuyển màu xanh dương. Một viên năng lực sẽ mang lại 50 điểm.</p>
+			<img src="img/instructions/instructions_powerpill.PNG">
+			<p>Ăn được một hồn ma sẽ mang lại 100 điểm. Linh hồn của các hồn ma sẽ trở về nhà ma trước khi bắt đầu truy đuổi pacman lần nữa.</p>
+		</div>
+
+	</div>
+</div>
+
+<!-- Info -->
+<div class="content" id="info-content">
+	<div class="button" id="back">&lt; Quay lại</div>
+	<div>
+		<h1>Thông tin</h1>
+		<p>Phiên bản hiện tại: <span class="app-version">1.0.5 (2021-03-22)</span></p>
+		<img src="img/platzh1rsch-logo.png">
+		<p>Pacman là một mã nguồn mở, được viết bởi <a href="http://platzh1rsch.ch">platzh1rsch</a>. Bạn có thể lấy mã nguồn tại <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.<br>Bản dịch của <a href="#" target="_blank">Anh Nguyen</a></p>
+	</div>
+</div>
+
+
+
+<!-- main game content -->
+<div class="content" id="game-content">
+
+		<!-- Google AdSense -->
+		<div id="adsense">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:50px"
+			     data-ad-client="ca-pub-0176206735745791"
+			     data-ad-slot="6492298622"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	
+	
+	<!-- main game content -->
+	<div class="game wrapper">
+	
+		<div class="score">Điểm:</div>
+		<div class="level">Vòng:</div>
+		<div class="lives">Mạng: </div>
+		
+		<div class="controlSound">
+			<img src="img/audio-icon-mute.png" id="mute">
+		</div>
+		<!-- canvas is splitted into 18x13 fields -->
+		<div id="canvas-container">
+			<div id="canvas-overlay-container">
+				<div id="canvas-overlay-content">
+					<div id="title">Pacman Canvas</div>
+					<div><p id="text">Nhấp để chơi</p></div>
+				</div>
+			</div>
+			<canvas id="myCanvas" width="540" height="390">
+			<p>Canvas không được hỗ trợ</p>
+			</canvas>
+		</div>
+
+		<div class="controls" id="game-buttons">
+		<!-- Will be moved to Instructions 
+		<p class="nomobile">Use W-A-S-D keys to navigate Pac-Man</p>
+		-->
+		
+			<!-- OLD Buttons -->
+			<div>
+				<span id="up" class="controlButton">&uarr;</span>
+			</div>
+			<div>
+				<span id="left" class="controlButton">&larr;</span>
+				<span id="down" class="controlButton">&darr;</span>
+				<span id="right" class="controlButton">&rarr;</span>
+			</div>
+			
+		</div>
+		<!-- inGame Controls End -->
+		
+		<!-- Game Menu -->		
+		<div class="controls" id="menu-buttons">
+			<ul>
+				<li class="button" id="newGame">Trò chơi mới</li>
+				<li class="button" id="highscore">Điểm cao</li>
+				<li class="button" id="instructions">Hướng dẫn</li>
+				<li class="button" id="info">Thông tin</li>
+				<li class="button"><a href="index.html">Quay lại trang chủ</a></li>
+				
+			</ul>
+			
+		</div>
+		<!-- Game Menu End -->
+		
+	</div>
+		
+	<div class="description nomobile">
+		<p>Toàn bộ chương trình được viết bằng HTML5, CSS3 và Javascript (sử dụng những bits jquery). Về căn bản tôi làm theo <a href="http://devhammer.net/blog/exploring-html5-canvas-part-1---introduction" target="_blank">"Khám phá HTML5 Canvas"</a> Hướng dẫn (Phần 1 - 6) bởi Devhammer. Cám ơn vì những hướng dẫn tuyệt vời!</a>
+		<p>Về những mặt khác, như cách viết objectorientated javascript tôi đã làm theo hướng dẫn tại <a href="http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>, đây là một trang thực sự tuyệt vời để học Javascript cũng như những ngôn ngữ khác.</a>
+		<p>Nếu bạn hiểu tiếng Đức bạn cũng có thể đọc những bài blog của tôi tại trang: <a href="http://blog.platzh1rsch.ch/2012/08/pacman-in-html5-canvas.html">"Pacman in HTML5 Canvas"</a>.</p>
+		
+		<span id="audio">
+			<audio id="theme" preload="auto">
+				<source src="wav/theme.wav" type="audio/wav">
+				<source src="mp3/theme.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="waka" preload="auto">
+				<source src="wav/waka.wav" type="audio/wav">
+				<source src="mp3/waka.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="die" preload="auto">
+				<source src="wav/die.wav" type="audio/wav">
+				<source src="mp3/die.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="powerpill" preload="auto">
+				<source src="wav/powerpill.wav" type="audio/wav">
+				<source src="mp3/powerpill.mp3" type="audio/mpeg">
+			</audio>
+		</span>
+		
+		
+	</div>
+
+</div>
+</div>
+</div>
+
+	<script src="pacman-canvas-vi.js" type="text/javascript"></script>
+
+
+</body>
+</html>

@@ -75,7 +75,7 @@ function geronimo() {
 			dataType: 'json',
 			success: function (data) {
 				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+				$('#highscore-form').html('<span class="button" id="show-highscore">Xem danh sách điểm cao</span>');
 			},
 			error: function (errorThrown) {
 				console.log(errorThrown);
@@ -85,7 +85,7 @@ function geronimo() {
 
 	function addHighscore() {
 		var name = $("input[type=text]").val();
-		$("#highscore-form").html("Saving highscore...");
+		$("#highscore-form").html("Đang lưu điểm...");
 		ajax_add(name, game.score.score, game.level);
 	}
 
@@ -172,7 +172,7 @@ function geronimo() {
 		this.monsters;
 		this.level = 1;
 		this.refreshLevel = function (h) {
-			$(h).html("Lvl: " + this.level);
+			$(h).html("Vòng: " + this.level);
 		};
 		this.canvas = $("#myCanvas").get(0);
 		this.wallColor = "Blue";
@@ -286,7 +286,7 @@ function geronimo() {
 		};
 
 		this.newGame = function () {
-			var r = confirm("Do you want to restart?");
+			var r = confirm("Bạn có chắc muốn bắt đầu lại trò chơi?");
 			if (r) {
 				console.log("new Game");
 				this.init(0);
@@ -303,7 +303,7 @@ function geronimo() {
 			} else {
 				this.level++;
 				console.log("Level " + game.level);
-				game.pauseAndShowMessage("Level " + game.level, this.getLevelTitle() + "<br/>(Click to continue!)");
+				game.pauseAndShowMessage("Vòng " + game.level, this.getLevelTitle() + "<br/>(Nhấn để tiếp tục!)");
 				game.refreshLevel(".level");
 				this.init(1);
 			}
@@ -315,7 +315,7 @@ function geronimo() {
 			for (var i = 0; i < count; i++) {
 				html += " <img src='img/heart.png'>";
 			}
-			$(".lives").html("Lives: " + html);
+			$(".lives").html("Mạng: " + html);
 
 		};
 
@@ -327,34 +327,34 @@ function geronimo() {
 		this.getLevelTitle = function () {
 			switch (this.level) {
 				case 2:
-					return '"The chase begins"';
+					return '"Cuộc truy đuổi bắt đầu"';
 					// activate chase / scatter switching
 				case 3:
-					return '"Inky\s awakening"';
+					return '"Inky thức tỉnh"';
 					// Inky starts leaving the ghost house
 				case 4:
-					return '"Clyde\s awakening"';
+					return '"Clyde thức tỉnh"';
 					// Clyde starts leaving the ghost house
 				case 5:
-					return '"need for speed"';
+					return '"Cần tăng tốc"';
 					// All the ghosts get faster from now on
 				case 6:
-					return '"hunting season 1"';
+					return '"Mùa săn 1"';
 					// TODO: No scatter mood this time
 				case 7:
-					return '"the big calm"';
+					return '"Sự yên tĩnh lớn"';
 					// TODO: Only scatter mood this time
 				case 8:
-					return '"hunting season 2"';
+					return '"Mùa săn 2"';
 					// TODO: No scatter mood and all ghosts leave instantly
 				case 9:
-					return '"ghosts on speed"';
+					return '"Hồn ma tăng tốc"';
 					// TODO: Ghosts get even faster for this level
 				case FINAL_LEVEL:
-					return '"The final chase"';
+					return '"Cuộc truy đuổi cuối cùng"';
 					// TODO: Ghosts get even faster for this level
 				default:
-					return '"nothing new"';
+					return '"Không có gì mới"';
 			}
 		}
 
@@ -394,9 +394,9 @@ function geronimo() {
 			var inputHTML = scoreIsValid ? `<div id='highscore-form'>
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
-					<span class='button' id='score-submit'>save</span>
-				</div>` : `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
-			this.pauseAndShowMessage("Game over", "Total Score: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
+					<span class='button' id='score-submit'>lưu</span>
+				</div>` : `<div id='invalid-score'>Điểm của bạn trông có vẻ giả tạo, danh sách điểm cao chỉ dành cho những người chơi trung thực ;)</div>`;
+			this.pauseAndShowMessage("Trò chơi kết thúc", "Tổng điểm: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
 			$('#playerName').focus();
 		}
 
@@ -414,7 +414,7 @@ function geronimo() {
 
 		this.forcePause = function () {
 			this.timer.stop();
-			this.pauseAndShowMessage("Pause", "Click to Resume");
+			this.pauseAndShowMessage("Tạm dừng", "Nhấn để quay lại");
 		}
 
 		this.forceResume = function () {
@@ -433,7 +433,7 @@ function geronimo() {
 			} else if (this.pause) {
 				this.forceResume();
 			} else {
-				this.pauseAndShowMessage("Pause", "Click to Resume");
+				this.pauseAndShowMessage("Tạm dừng", "Nhấn để quay lại");
 			}
 		};
 
@@ -622,7 +622,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function (h) {
-			$(h).html("Score: " + this.score);
+			$(h).html("Điểm: " + this.score);
 		};
 
 	}
@@ -1302,7 +1302,7 @@ function geronimo() {
 				// Browser downloaded a new app cache.
 				// Swap it in and reload the page to get the new hotness.
 				window.applicationCache.swapCache();
-				if (confirm('A new version of this site is available. Load it?')) {
+				if (confirm('Phiên bản mới của site này đã có. Tải phiên bản mới?')) {
 					window.location.reload();
 				}
 

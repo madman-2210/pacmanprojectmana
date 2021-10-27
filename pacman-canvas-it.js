@@ -75,7 +75,7 @@ function geronimo() {
 			dataType: 'json',
 			success: function (data) {
 				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+				$('#highscore-form').html('<span class="button" id="show-highscore">Vedi Lista Record</span>');
 			},
 			error: function (errorThrown) {
 				console.log(errorThrown);
@@ -85,7 +85,7 @@ function geronimo() {
 
 	function addHighscore() {
 		var name = $("input[type=text]").val();
-		$("#highscore-form").html("Saving highscore...");
+		$("#highscore-form").html("Salvataggio record...");
 		ajax_add(name, game.score.score, game.level);
 	}
 
@@ -286,7 +286,7 @@ function geronimo() {
 		};
 
 		this.newGame = function () {
-			var r = confirm("Do you want to restart?");
+			var r = confirm("Vuoi riavviare?");
 			if (r) {
 				console.log("new Game");
 				this.init(0);
@@ -303,7 +303,7 @@ function geronimo() {
 			} else {
 				this.level++;
 				console.log("Level " + game.level);
-				game.pauseAndShowMessage("Level " + game.level, this.getLevelTitle() + "<br/>(Click to continue!)");
+				game.pauseAndShowMessage("Livello " + game.level, this.getLevelTitle() + "<br/>(Clicca per continuare!)");
 				game.refreshLevel(".level");
 				this.init(1);
 			}
@@ -315,7 +315,7 @@ function geronimo() {
 			for (var i = 0; i < count; i++) {
 				html += " <img src='img/heart.png'>";
 			}
-			$(".lives").html("Lives: " + html);
+			$(".lives").html("Vite: " + html);
 
 		};
 
@@ -327,34 +327,34 @@ function geronimo() {
 		this.getLevelTitle = function () {
 			switch (this.level) {
 				case 2:
-					return '"The chase begins"';
+					return '"La caccia ha inizio"';
 					// activate chase / scatter switching
 				case 3:
-					return '"Inky\s awakening"';
+					return '"Il risveglio di Inky"';
 					// Inky starts leaving the ghost house
 				case 4:
-					return '"Clyde\s awakening"';
+					return '"Il risveglio di Clyde"';
 					// Clyde starts leaving the ghost house
 				case 5:
 					return '"need for speed"';
 					// All the ghosts get faster from now on
 				case 6:
-					return '"hunting season 1"';
+					return '"la caccia, 1a stagione"';
 					// TODO: No scatter mood this time
 				case 7:
-					return '"the big calm"';
+					return '"la grande calma"';
 					// TODO: Only scatter mood this time
 				case 8:
-					return '"hunting season 2"';
+					return '"la caccia, 2a stagione"';
 					// TODO: No scatter mood and all ghosts leave instantly
 				case 9:
-					return '"ghosts on speed"';
+					return '"fantasmi a manetta"';
 					// TODO: Ghosts get even faster for this level
 				case FINAL_LEVEL:
-					return '"The final chase"';
+					return '"Inseguimento finale"';
 					// TODO: Ghosts get even faster for this level
 				default:
-					return '"nothing new"';
+					return '"niente di nuovo"';
 			}
 		}
 
@@ -395,8 +395,8 @@ function geronimo() {
 					<span id='form-validator'></span>
 					<input type='text' id='playerName'/>
 					<span class='button' id='score-submit'>save</span>
-				</div>` : `<div id='invalid-score'>Your score looks fake, the highscore list is only for honest players ;)</div>`;
-			this.pauseAndShowMessage("Game over", "Total Score: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
+				</div>` : `<div id='invalid-score'>Il tuo punteggio sembra falso, i record sono solo per i giocatori onesti ;)</div>`;
+			this.pauseAndShowMessage("Game over", "Punteggio finale: " + this.score.score + (HIGHSCORE_ENABLED ? inputHTML : ''));
 			$('#playerName').focus();
 		}
 
@@ -414,7 +414,7 @@ function geronimo() {
 
 		this.forcePause = function () {
 			this.timer.stop();
-			this.pauseAndShowMessage("Pause", "Click to Resume");
+			this.pauseAndShowMessage("Pausa", "Clicca per riavviare");
 		}
 
 		this.forceResume = function () {
@@ -433,7 +433,7 @@ function geronimo() {
 			} else if (this.pause) {
 				this.forceResume();
 			} else {
-				this.pauseAndShowMessage("Pause", "Click to Resume");
+				this.pauseAndShowMessage("Pausa", "Clicca per riavviare");
 			}
 		};
 
@@ -622,7 +622,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function (h) {
-			$(h).html("Score: " + this.score);
+			$(h).html("Punti: " + this.score);
 		};
 
 	}
@@ -1377,7 +1377,7 @@ function geronimo() {
 		$('body').on('click', '#score-submit', function () {
 			console.log("submit highscore pressed");
 			if ($('#playerName').val() === "" || $('#playerName').val() === undefined) {
-				$('#form-validator').html("Please enter a name<br/>");
+				$('#form-validator').html("Inserire nome<br/>");
 			} else {
 				$('#form-validator').html("");
 				addHighscore();
