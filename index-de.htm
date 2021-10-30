@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<!--<html lang="de">-->
+<html lang="de" manifest="cache.manifest">
+<head>
+	<meta charset="utf-8" />
+	<title>Pacman HTML 5 Deutsch</title>
+	<link rel="stylesheet" href="style-en.css">
+	<link rel="stylesheet" href="pacman-canvas-de.css">
+	<link rel="manifest" href="manifest.json">
+
+
+	<!-- SEO Stuff -->
+    <meta name="description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <link rel="canonical" href="http://pacman.platzh1rsch.ch/" />
+    <meta name="author" content="platzh1rsch.ch" />
+    <meta name="publisher" content="platzh1rsch.ch" />
+    <meta name="copyright" content="&copy; Copyright (c) platzh1rsch.ch" />
+    <meta name="robots" content="index,follow" />
+    <meta http-equiv="content-language" content="de">
+    <meta name="language" content="de">
+    <meta name="page-topic" content="Games/Arcade" />
+
+    <meta content="National" name="distribution" />
+    <meta content="pacman.platzh1rsch.ch" name="target" />
+
+   	<!-- Facebook Open Graph Information -->
+	<meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-200x200.png"/>
+    <meta property="og:title" content="Pacman Canvas in HTML5" />
+	<meta property="og:description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
+    <meta property="og:url" content="http://pacman.platzh1rsch.ch/" />
+    <meta property="og:site_name" content="Pacman Canvas in HTML5" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- site icons -->
+	<link rel="shortcut icon" href="img/Icon-130x130.png" />
+	<link rel="apple-touch-icon" href="img/Icon-130x130.png" />
+
+    <meta property="og:image" content="http://pacman.platzh1rsch.ch/img/Icon-130x130.png"/>
+
+	<!-- AppsFuel verification code -->
+	<meta name="appsfuel_code" content="83d3cedc1050a5c"/>
+	
+	<!-- Mobile Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	
+	<!-- Apple Mobile Web Capability -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<!-- Script -->
+	<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery.hammer.min.js" type="text/javascript"></script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28993174-1']);
+	  _gaq.push(['_setDomainName', 'pacman.platzh1rsch.ch']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+	
+</head>
+
+<body>
+
+<div class="container">
+<div class="main">
+
+
+<!-- Display this message if Javascript is disabled -->
+<noscript>
+<h2>Javascript aktivieren!</h2>
+<p>Diese HTML 5 App benötigt Javascript. Bitte prüfe, ob Javascript in deinem Browser aktiviert worden ist.</p>
+</noscript>
+
+<!-- Highscore -->
+<div class="content" id="highscore-content">
+	<div class="button" id="back">&lt; Zurück</div>
+	<div>
+		<h1>Ruhmeshalle</h1>
+		<p>
+			<ol id="highscore-list">
+				
+			</ol>
+		</p>
+	</div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="content" id="instructions-content">
+	<div class="button" id="back">&lt; Zurück</div>
+	<div>
+		<h1>Anleitung</h1>
+		<div class="nomobile">
+			<h2>Steuerung</h2>
+			<p>Verwende die Pfeiltasten oder die Tasten [W,A,S,D], um Pacman zu steuern.</p>
+			<p>Um das Spiel zu pausieren / fortzusetzen, drücke die[LEERTASTE] oder [ESC] oder klicke einfach in den Spielbereich.</p>
+		</div>
+		<div class="mobile">
+			<h2>Steuerung</h2>
+			<p>Verwende Wischgesten, um Pacman zu steuern.</p>
+			<p>Alternativ kannst du auch die Pfeiltasten unterhalb des Spielfelds verwenden, um Pacman zu steuern.</p>
+			<p>Um das Spiel zu unterbrechen / fortzusetzen, berühre den Spielbereich einmal.</p>
+		</div>
+
+		<div>
+			<h2>Gespenster</h2>
+			<p>Gespenster sind Kreaturen, die Pacman jagen und ihn fangen werden, wenn sie ihn erwischen.</p>
+			<p>Jedes Gespenst hat seine eigene Strategie, um Pacman zu jagen.</p>
+			<h3>Tinty<img src="img/inky.svg" class="pull-right"></h3>
+			Tinty bleibt so lange im Gespensterhaus, bis Pacman mindestens 30 Pillen gegessen hat.	Sein Zuhause ist die untere rechte Ecke.
+			<h3>Blinky <img src="img/blinky.svg" class="pull-right"></h3>
+			Blinky ist der aggressivste der 4 Gespenster. Er wird sofort anfangen, Pacman zu jagen und direkt auf ihn zusteuern. Sein Zuhause ist die obere rechte Ecke.
+			<h3>Pinky<img src="img/pinky.svg" class="pull-right"></h3>
+			Pinky fängt sofort an, Pacman zu jagen, er versucht immer 4 Felder vor und 4 Felder links von Pacman zu sein. Sein Zuhause ist die obere linke Ecke.
+			<h3>Clyde<img src="img/clyde.svg" class="pull-right"></h3>
+			Clyde bleibt im Geisterhaus, bis Pacman mindestens 2/3 aller Pillen gegessen hat. Sein Zuhause ist die untere linke Ecke.
+		</div>
+
+		<div>
+			<h2>Gespenster-Stimmung</h2>
+			Die Gespenster haben zwei verschiedene Stimmungen, die ihr Verhalten während des Spiels verändern.			
+			<h3>Sie bleiben wo sie sind</h3>
+			<p>Dies ist die Standardstimmung. Wenn Geister in dieser Stimmung sind, gehen sie einfach in ihre Ecke und bleiben dort.</p>
+			<img src="img/instructions/instructions_scatter.PNG">
+			<h3>Jagdstimmung</h3>
+			<p>Nach einer gewissen Zeit ändern die Geister ihre Laune und wollen Pacman jagen. Dies wird dadurch angezeigt, dass die Wände rot werden.</p>
+			<img src="img/instructions/instructions_chase.PNG">
+		</div>
+
+		<div>
+			<h2>Gegenstände</h2>
+			<h3>Pillen</h3>
+			<p>The goal of every level is, to eat all the white pills without getting catched by the ghosts. One pill results in 10 points.</p>
+			<h3>Powerpills</h3>
+			<p>Das Ziel jedes Levels ist es, alle weißen Pillen zu essen, ohne von den Geistern erwischt zu werden. Pro Pille gibt es 10 Punkte.</p>
+			<img src="img/instructions/instructions_powerpill.PNG">
+			<p>Wenn du ein Gespenst frisst, erhältst du 100 Punkte. Die Seele des Geistes kehrt in das Geisterhaus zurück, bevor er wieder Pacman jagen kann.</p>
+		</div>
+
+	</div>
+</div>
+
+<!-- Info -->
+<div class="content" id="info-content">
+	<div class="button" id="back">&lt; Zurück</div>
+	<div>
+		<h1>Infos</h1>
+		<p>Aktuelle Version: <span class="app-version">1.0.5 (2021-03-22)</span></p>
+		<img src="img/platzh1rsch-logo.png">
+		<p>Pacman Canvas ist ein Open Source Game, erstellt von <a href="http://platzh1rsch.ch">platzh1rsch</a>. Du bekommst den Code auf <a target="_blank" href="https://github.com/platzhersh/pacman-canvas" target="_blank">github</a>.<br>Deutsche übersetzung von <a href="https://www.linkedin.com/in/fabian-kempert/" target="_blank">Fabian Kempert</a></p>
+	</div>
+</div>
+
+
+
+<!-- main game content -->
+<div class="content" id="game-content">
+
+		<!-- Google AdSense -->
+		<div id="adsense">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:50px"
+			     data-ad-client="ca-pub-0176206735745791"
+			     data-ad-slot="6492298622"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	
+	
+	<!-- main game content -->
+	<div class="game wrapper">
+	
+		<div class="score">Punkte:</div>
+		<div class="level">Level:</div>
+		<div class="lives">Leben: </div>
+		
+		<div class="controlSound">
+			<img src="img/audio-icon-mute.png" id="mute">
+		</div>
+		<!-- canvas is splitted into 18x13 fields -->
+		<div id="canvas-container">
+			<div id="canvas-overlay-container">
+				<div id="canvas-overlay-content">
+					<div id="title">Pacman Canvas Deutsch</div>
+					<div><p id="text">Starte das Spiel hier</p></div>
+				</div>
+			</div>
+			<canvas id="myCanvas" width="540" height="390">
+			<p>Canvas wird nicht unterstützt</p>
+			</canvas>
+		</div>
+
+		<div class="controls" id="game-buttons">
+		<!-- Will be moved to Instructions 
+		<p class="nomobile">Use W-A-S-D keys to navigate Pac-Man</p>
+		-->
+		
+			<!-- OLD Buttons -->
+			<div>
+				<span id="up" class="controlButton">&uarr;</span>
+			</div>
+			<div>
+				<span id="left" class="controlButton">&larr;</span>
+				<span id="down" class="controlButton">&darr;</span>
+				<span id="right" class="controlButton">&rarr;</span>
+			</div>
+			
+		</div>
+		<!-- inGame Controls End -->
+		
+		<!-- Game Menu -->		
+		<div class="controls" id="menu-buttons">
+			<ul>
+				<li class="button" id="newGame">Neues Spiel</li>
+				<li class="button" id="highscore">Ruhmeshalle</li>
+				<li class="button" id="instructions">Spielanleitung</li>
+				<li class="button" id="info">Infos</li>
+				<li class="button"><a href="index.html">Zurück zur Startseite</a></li>
+			</ul>
+			
+		</div>
+		<!-- Game Menu End -->
+		
+	</div>
+		
+	<div class="description nomobile">
+		<p>This whole thing was written in HTML5, CSS3 and Javascript (using small bits of jquery). For the basics I was following the <a href="http://devhammer.net/blog/exploring-html5-canvas-part-1---introduction" target="_blank">"Exploring HTML5 Canvas"</a> Tutorials (Part 1 - 6) by Devhammer. Thanks for the great Tutorial!</a>
+		<p>For some other stuff, like how to write objectorientated javascript I was following the tutorials over at <a href="http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>, which is a really great site to learn Javascript and also other languages.</a>
+		<p>If you understand German you can also read my blogpost about this site: <a href="http://blog.platzh1rsch.ch/2012/08/pacman-in-html5-canvas.html">"Pacman in HTML5 Canvas"</a>.</p>
+		
+		<span id="audio">
+			<audio id="theme" preload="auto">
+				<source src="wav/theme.wav" type="audio/wav">
+				<source src="mp3/theme.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="waka" preload="auto">
+				<source src="wav/waka.wav" type="audio/wav">
+				<source src="mp3/waka.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="die" preload="auto">
+				<source src="wav/die.wav" type="audio/wav">
+				<source src="mp3/die.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="powerpill" preload="auto">
+				<source src="wav/powerpill.wav" type="audio/wav">
+				<source src="mp3/powerpill.mp3" type="audio/mpeg">
+			</audio>
+		</span>
+		
+		
+	</div>
+
+</div>
+</div>
+</div>
+
+	<script src="pacman-canvas-de.js" type="text/javascript"></script>
+
+
+</body>
+</html>
