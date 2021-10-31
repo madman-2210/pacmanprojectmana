@@ -74,7 +74,7 @@ function geronimo() {
 			},
 			dataType: 'json',
 			success: function (data) {
-				console.log('Highscore added: ' + data);
+				console.log('Điểm cao được thêm vào: ' + data);
 				$('#highscore-form').html('<span class="button" id="show-highscore">Xem danh sách điểm cao</span>');
 			},
 			error: function (errorThrown) {
