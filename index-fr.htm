@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<!--<html lang="en">-->
-<html lang="en" manifest="cache.manifest">
+<!--<html lang="fr">-->
+<html lang="fr" manifest="cache.manifest">
 <head>
 	<meta charset="utf-8" />
 	<title>Pacman in HTML 5 Canvas</title>
@@ -17,8 +17,8 @@
     <meta name="publisher" content="platzh1rsch.ch" />
     <meta name="copyright" content="&copy; Copyright (c) platzh1rsch.ch" />
     <meta name="robots" content="index,follow" />
-    <meta http-equiv="content-language" content="de">
-    <meta name="language" content="de">
+    <meta http-equiv="content-language" content="fr">
+    <meta name="language" content="fr">
     <meta name="page-topic" content="Games/Arcade" />
 
     <meta content="National" name="distribution" />
@@ -30,7 +30,7 @@
 	<meta property="og:description" content="Play Pacman Canvas for free on your desktop or mobile. This whole game is open source an was created in HTML5." />
     <meta property="og:url" content="http://pacman.platzh1rsch.ch/" />
     <meta property="og:site_name" content="Pacman Canvas in HTML5" />
-	<meta property="og:locale" content="en_US" />
+	<meta property="og:locale" content="fr_	FR" />
 
 	<!-- site icons -->
 	<link rel="shortcut icon" href="img/Icon-130x130.png" />
@@ -68,7 +68,13 @@
 	</script>
 	
 </head>
-
+	
+<style>
+	p {
+		word-break: break-all;
+	}
+</style>
+	
 <body>
 
 <div class="container">
@@ -116,18 +122,18 @@
 			<p>Les fantômes sont des créatures qui pourchassent Pacman et le tueront s'ils l'attrapent.</p>
 			<p>Chaque fantôme à sa propre stratégie pour pourchasser Pacman.</p>
 			<h3>Inky<img src="img/inky.svg" class="pull-right"></h3>
-			Inky reste dans la maison fantôme jusqu'à ce que Pacman ait mangé au moins 30 pilules. Sa maison se trouve dans le coin inférieur droit.
+			<p>Inky reste dans la maison fantôme jusqu'à ce que Pacman ait mangé au moins 30 pilules. Sa maison se trouve dans le coin inférieur droit.</p>
 			<h3>Blinky <img src="img/blinky.svg" class="pull-right"></h3>
-			Blinky est le plus agressif des 4 fantômes. Il commencera à poursuivre Pacman immédiatement, et le visera directement. Sa maison est dans le coin supérieur droit.
+			<p>Blinky est le plus agressif des 4 fantômes. Il commencera à poursuivre Pacman immédiatement, et le visera directement. Sa maison est dans le coin supérieur droit.</p>
 			<h3>Pinky<img src="img/pinky.svg" class="pull-right"></h3>
-			Pinky poursuivra Pacman immédiatement, elle visera toujours 4 pas en avant et 4 pas à gauche de Pacman. Sa maison se trouve dans le coin supérieur gauche.
+			<p>Pinky poursuivra Pacman immédiatement, elle visera toujours 4 pas en avant et 4 pas à gauche de Pacman. Sa maison se trouve dans le coin supérieur gauche.</p>
 			<h3>Clyde<img src="img/clyde.svg" class="pull-right"></h3>
-			Clyde restera dans la maison fantôme jusqu'à ce que Pacman ait mangé au moins 2/3 de toutes les pilules. Sa maison se trouve dans le coin inférieur gauche.
+			<p>Clyde restera dans la maison fantôme jusqu'à ce que Pacman ait mangé au moins 2/3 de toutes les pilules. Sa maison se trouve dans le coin inférieur gauche.</p>
 		</div>
 
 		<div>
 			<h2>Modes de fantômes</h2>
-			Les fantômes ont deux modes différents qui changent leur façon d'agir pendant le jeu.
+			<p>Les fantômes ont deux modes différents qui changent leur façon d'agir pendant le jeu.</p>
 			<h3>Mode de dispersion</h3>
 			<p>C'est le mode par défaut. Lorsque les fantômes sont en mode "dispersion", ils vont simplement aller dans leur coin et y rester.</p>
 			<img src="img/instructions/instructions_scatter.PNG">
