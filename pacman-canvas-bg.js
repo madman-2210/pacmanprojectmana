@@ -303,7 +303,7 @@ function geronimo() {
 			} else {
 				this.level++;
 				console.log("Level " + game.level);
-				game.pauseAndShowMessage("Ниво " + game.level, this.getLevelTitle() + "<br/>(Щракни, за да продължиш!)");
+				game.pauseAndShowMessage("Ниво " + game.level, this.getLevelTitle() + "<br/>(Кликни, за да продължиш!)");
 				game.refreshLevel(".level");
 				this.init(1);
 			}
@@ -414,7 +414,7 @@ function geronimo() {
 
 		this.forcePause = function () {
 			this.timer.stop();
-			this.pauseAndShowMessage("Пауза", "Щракни, за да продължиш");
+			this.pauseAndShowMessage("Пауза", "Кликни, за да продължиш");
 		}
 
 		this.forceResume = function () {
@@ -433,7 +433,7 @@ function geronimo() {
 			} else if (this.pause) {
 				this.forceResume();
 			} else {
-				this.pauseAndShowMessage("Пауза", "Щракни, за да продължиш");
+				this.pauseAndShowMessage("Пауза", "Кликни, за да продължиш");
 			}
 		};
 
